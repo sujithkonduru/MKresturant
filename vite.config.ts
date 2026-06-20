@@ -162,23 +162,22 @@ export default defineConfig({
   plugins,
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
+      "@": path.resolve(import.meta.dirname, "src"), // ✅ Changed from "client/src" to "src"
       "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
   envDir: path.resolve(import.meta.dirname),
-  root: path.resolve(import.meta.dirname, "client"),
-  publicDir: path.resolve(import.meta.dirname, "client", "public"),
+  root: path.resolve(import.meta.dirname), // ✅ Changed from "client" to root
+  publicDir: path.resolve(import.meta.dirname, "public"),
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    outDir: path.resolve(import.meta.dirname, "dist"), // ✅ Changed from "dist/public" to "dist"
     emptyOutDir: true,
     sourcemap: process.env.NODE_ENV !== "production",
-    // ✅ Add rollup options for better tree shaking
     rollupOptions: {
       output: {
         manualChunks: {
-          'vendor': ['react', 'react-dom', 'react-router-dom'],
+          'vendor': ['react', 'react-dom'], // ✅ Removed react-router-dom (using wouter)
           'framer-motion': ['framer-motion'],
         },
       },
@@ -208,25 +207,21 @@ export default defineConfig({
       }
     }
   },
-  // ✅ Updated optimizeDeps with framer-motion
   optimizeDeps: {
     include: [
       'react',
       'react-dom',
-      'react-router-dom',
-      'framer-motion',  // ✅ Added framer-motion
+      'wouter', // ✅ Added wouter
+      'framer-motion',
       'axios',
       'clsx',
       'tailwind-merge',
     ],
-    // ✅ Force re-optimization if needed
-    force: true,
+    force: false, // ✅ Changed to false for production
   },
-  // ✅ CSS options
   css: {
     postcss: './postcss.config.js',
   },
-  // ✅ Add esbuild options for better compatibility
   esbuild: {
     logOverride: { 'this-is-undefined-in-esm': 'silent' },
   },
