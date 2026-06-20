@@ -8,13 +8,12 @@ import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
-// Writes browser logs directly to files, trimmed when exceeding size limit
 // =============================================================================
 
 const PROJECT_ROOT = import.meta.dirname;
 const LOG_DIR = path.join(PROJECT_ROOT, ".manus-logs");
-const MAX_LOG_SIZE_BYTES = 1 * 1024 * 1024; // 1MB per log file
-const TRIM_TARGET_BYTES = Math.floor(MAX_LOG_SIZE_BYTES * 0.6); // Trim to 60% to avoid constant re-trimming
+const MAX_LOG_SIZE_BYTES = 1 * 1024 * 1024;
+const TRIM_TARGET_BYTES = Math.floor(MAX_LOG_SIZE_BYTES * 0.6);
 
 type LogSource = "browserConsole" | "networkRequests" | "sessionReplay";
 
@@ -34,7 +33,6 @@ function trimLogFile(logPath: string, maxSize: number) {
     const keptLines: string[] = [];
     let keptBytes = 0;
 
-    // Keep newest lines (from end) that fit within 60% of maxSize
     const targetSize = TRIM_TARGET_BYTES;
     for (let i = lines.length - 1; i >= 0; i--) {
       const lineBytes = Buffer.byteLength(`${lines[i]}\n`, "utf-8");
@@ -55,25 +53,15 @@ function writeToLogFile(source: LogSource, entries: unknown[]) {
   ensureLogDir();
   const logPath = path.join(LOG_DIR, `${source}.log`);
 
-  // Format entries with timestamps
   const lines = entries.map((entry) => {
     const ts = new Date().toISOString();
     return `[${ts}] ${JSON.stringify(entry)}`;
   });
 
-  // Append to log file
   fs.appendFileSync(logPath, `${lines.join("\n")}\n`, "utf-8");
-
-  // Trim if exceeds max size
   trimLogFile(logPath, MAX_LOG_SIZE_BYTES);
 }
 
-/**
- * Vite plugin to collect browser debug logs
- * - POST /__manus__/logs: Browser sends logs, written directly to files
- * - Files: browserConsole.log, networkRequests.log, sessionReplay.log
- * - Auto-trimmed when exceeding 1MB (keeps newest entries)
- */
 function vitePluginManusDebugCollector(): Plugin {
   return {
     name: "manus-debug-collector",
@@ -98,14 +86,12 @@ function vitePluginManusDebugCollector(): Plugin {
     },
 
     configureServer(server: ViteDevServer) {
-      // POST /__manus__/logs: Browser sends logs (written directly to files)
       server.middlewares.use("/__manus__/logs", (req, res, next) => {
         if (req.method !== "POST") {
           return next();
         }
 
         const handlePayload = (payload: any) => {
-          // Write logs directly to files
           if (payload.consoleLogs?.length > 0) {
             writeToLogFile("browserConsole", payload.consoleLogs);
           }
@@ -150,7 +136,6 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
-// ✅ Fixed plugins array
 const plugins = [
   react(),
   tailwindcss(),
@@ -158,26 +143,38 @@ const plugins = [
   vitePluginManusDebugCollector()
 ];
 
+// ✅ Check if index.html exists in client directory
+const clientIndexPath = path.resolve(import.meta.dirname, "client", "index.html");
+const rootIndexPath = path.resolve(import.meta.dirname, "index.html");
+
+// Use client directory if index.html exists there, otherwise use root
+const useClientDir = fs.existsSync(clientIndexPath);
+
 export default defineConfig({
   plugins,
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "src"), // ✅ Changed from "client/src" to "src"
+      "@": path.resolve(import.meta.dirname, useClientDir ? "client/src" : "src"),
       "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
   envDir: path.resolve(import.meta.dirname),
-  root: path.resolve(import.meta.dirname), // ✅ Changed from "client" to root
-  publicDir: path.resolve(import.meta.dirname, "public"),
+  // ✅ Use the correct root directory
+  root: useClientDir 
+    ? path.resolve(import.meta.dirname, "client")
+    : path.resolve(import.meta.dirname),
+  publicDir: useClientDir
+    ? path.resolve(import.meta.dirname, "client", "public")
+    : path.resolve(import.meta.dirname, "public"),
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist"), // ✅ Changed from "dist/public" to "dist"
+    outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
     sourcemap: process.env.NODE_ENV !== "production",
     rollupOptions: {
       output: {
         manualChunks: {
-          'vendor': ['react', 'react-dom'], // ✅ Removed react-router-dom (using wouter)
+          'vendor': ['react', 'react-dom'],
           'framer-motion': ['framer-motion'],
         },
       },
@@ -211,13 +208,13 @@ export default defineConfig({
     include: [
       'react',
       'react-dom',
-      'wouter', // ✅ Added wouter
+      'wouter',
       'framer-motion',
       'axios',
       'clsx',
       'tailwind-merge',
     ],
-    force: false, // ✅ Changed to false for production
+    force: false,
   },
   css: {
     postcss: './postcss.config.js',
