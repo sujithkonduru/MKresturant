@@ -93,13 +93,14 @@ const CATEGORY_ICONS: Record<string, any> = {
 };
 
 const SAMPLE_MENU: MenuItem[] = [
+  // ─── Breakfast (4 items) ────────────────────────────────────────────
   {
     id: 1,
     name: "Idly",
     category: "breakfast",
     description: "Soft and fluffy steamed rice cakes served with sambar and chutney",
     price: 80,
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663778283739/SE7CbgfPW9YZFR8iB7rsUh/dish-paneer-tikka-2pGnFfexLmzs3N9y9mPGve.webp",
+    image: "https://www.awesomecuisine.com/wp-content/uploads/2018/10/Methi-Idly-Fenugreek-Leaves-Idli.jpg",
     rating: 4.5,
     isVegetarian: true,
     isPopular: true
@@ -108,29 +109,77 @@ const SAMPLE_MENU: MenuItem[] = [
     id: 2,
     name: "Masala Dosa",
     category: "breakfast",
-    description: "Crispy golden dosa with spiced potato filling",
+    description: "Crispy golden dosa with spiced potato filling, served with chutney and sambar",
     price: 120,
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663778283739/SE7CbgfPW9YZFR8iB7rsUh/dish-paneer-tikka-2pGnFfexLmzs3N9y9mPGve.webp",
+    image: "https://simpleindianrecipes.com/portals/0/sirimages/Masala-Dosa-M.jpg",
     rating: 4.8,
     isVegetarian: true,
     isPopular: true
   },
   {
     id: 3,
-    name: "Paneer Tikka",
-    category: "starters",
-    description: "Marinated paneer cubes grilled to perfection in tandoor",
-    price: 280,
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663778283739/SE7CbgfPW9YZFR8iB7rsUh/dish-paneer-tikka-2pGnFfexLmzs3N9y9mPGve.webp",
-    rating: 4.7,
+    name: "Pongal",
+    category: "breakfast",
+    description: "Traditional South Indian breakfast made with rice and moong dal, tempered with ghee and black pepper",
+    price: 140,
+    image: "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/05/ven-pongal-recipe.jpg",
+    rating: 4.3,
+    isVegetarian: true,
+    isPopular: false
+  },
+  {
+    id: 4,
+    name: "Uttapam",
+    category: "breakfast",
+    description: "Thick savory pancake with onions, tomatoes, and green chilies",
+    price: 160,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrhs-kcsBQ8tBNtWaRMEIHPeyyzT63MxAf2pbtXUim8w&s=10",
+    rating: 4.4,
+    isVegetarian: true,
+    isPopular: false
+  },
+
+  // ─── South Indian (3 items) ──────────────────────────────────────────
+  {
+    id: 5,
+    name: "Rava Dosa",
+    category: "south_indian",
+    description: "Crispy dosa made with semolina, served with coconut chutney and sambar",
+    price: 130,
+    image: "https://www.vegrecipesofindia.com/wp-content/uploads/2018/09/rava-dosa-recipe-1.jpg",
+    rating: 4.6,
     isVegetarian: true,
     isPopular: true
   },
   {
-    id: 4,
+    id: 6,
+    name: "Vada",
+    category: "south_indian",
+    description: "Crispy deep-fried lentil donuts served with chutney and sambar",
+    price: 100,
+    image: "https://somethingiscooking.com/wp-content/uploads/2017/04/Uzhunnu-Vada-3.jpg",
+    rating: 4.4,
+    isVegetarian: true,
+    isPopular: false
+  },
+  {
+    id: 7,
+    name: "Puri Bhaji",
+    category: "south_indian",
+    description: "Deep-fried fluffy puris served with spicy potato curry",
+    price: 150,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzv5bFK4pX5fSP2JJ12VjChiEcQN2hlolAQX59vpEbng&s=10",
+    rating: 4.2,
+    isVegetarian: true,
+    isPopular: false
+  },
+
+  // ─── North Indian (4 items) ─────────────────────────────────────────
+  {
+    id: 8,
     name: "Paneer Butter Masala",
     category: "north_indian",
-    description: "Soft paneer in rich tomato-based creamy sauce",
+    description: "Soft paneer cubes in rich tomato-based creamy sauce with aromatic spices",
     price: 380,
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663778283739/SE7CbgfPW9YZFR8iB7rsUh/dish-dal-makhani-cUfS3tAmDWdDFqmziKo274.webp",
     rating: 4.9,
@@ -138,25 +187,201 @@ const SAMPLE_MENU: MenuItem[] = [
     isPopular: true
   },
   {
-    id: 5,
+    id: 9,
     name: "Dal Makhani",
     category: "north_indian",
-    description: "Creamy black lentil curry with butter and cream",
+    description: "Creamy black lentil curry slow-cooked with butter and fresh cream",
     price: 320,
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663778283739/SE7CbgfPW9YZFR8iB7rsUh/dish-dal-makhani-cUfS3tAmDWdDFqmziKo274.webp",
+    image: "https://www.funfoodfrolic.com/wp-content/uploads/2023/04/Dal-Makhani-Blog-500x500.jpg",
     rating: 4.6,
-    isVegetarian: true
+    isVegetarian: true,
+    isPopular: false
   },
   {
-    id: 6,
+    id: 10,
+    name: "Shahi Paneer",
+    category: "north_indian",
+    description: "Royal paneer curry in a rich and creamy gravy with nuts and aromatic spices",
+    price: 400,
+    image: "https://static.toiimg.com/photo/52446409.cms",
+    rating: 4.7,
+    isVegetarian: true,
+    isPopular: true
+  },
+  {
+    id: 11,
+    name: "Kadai Paneer",
+    category: "north_indian",
+    description: "Paneer cooked with bell peppers and spices in a traditional kadai",
+    price: 360,
+    image: "https://www.awesomecuisine.com/wp-content/uploads/2020/01/kadai-paneer-500x375.jpg",
+    rating: 4.5,
+    isVegetarian: true,
+    isPopular: false
+  },
+
+  // ─── Starters (3 items) ─────────────────────────────────────────────
+  {
+    id: 12,
+    name: "Paneer Tikka",
+    category: "starters",
+    description: "Marinated paneer cubes grilled to perfection in tandoor with smoky flavor",
+    price: 280,
+    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWEwWfozDKGmqySOPdhysUBUJCBHRs9mpH3nEa5NBYVcl9ZiDyDg-9kLoVt38CT7d3aSNgKVal6HTqEKdIYiOZl0J3J7SAxSKiRlx1QMHxwSR2PO8i0KbeYxNFP_v5BD70k1zUqvDnJ9BH/s1600/Paneer_Tikka_5.jpg",
+    rating: 4.7,
+    isVegetarian: true,
+    isPopular: true
+  },
+  {
+    id: 13,
+    name: "Gobi Manchurian",
+    category: "starters",
+    description: "Crispy cauliflower florets tossed in spicy Indo-Chinese sauce",
+    price: 220,
+    image: "https://palatesdesire.com/wp-content/uploads/2022/09/dry-gobi-manchurian-recipe@palates-desire.jpg",
+    rating: 4.5,
+    isVegetarian: true,
+    isPopular: false
+  },
+  {
+    id: 14,
+    name: "Hara Bhara Kebab",
+    category: "starters",
+    description: "Green spinach and potato patties with a hint of mint and spices",
+    price: 240,
+    image: "https://www.cookclickndevour.com/wp-content/uploads/2016/05/hara-bhara-kabab-recipe-1.jpg",
+    rating: 4.3,
+    isVegetarian: true,
+    isPopular: false
+  },
+
+  // ─── Chinese (3 items) ──────────────────────────────────────────────
+  {
+    id: 15,
+    name: "Veg Fried Rice",
+    category: "chinese",
+    description: "Wok-tossed rice with fresh vegetables and aromatic Chinese spices",
+    price: 250,
+    image: "https://www.kannammacooks.com/wp-content/uploads/schezwan-veg-fried-rice-1.jpg",
+    rating: 4.3,
+    isVegetarian: true,
+    isPopular: false
+  },
+  {
+    id: 16,
+    name: "Chilli Paneer",
+    category: "chinese",
+    description: "Crispy paneer cubes tossed in spicy chilli sauce with bell peppers",
+    price: 290,
+    image: "https://www.yummytummyaarthi.com/wp-content/uploads/2023/06/chilli-paneer-1.jpeg",
+    rating: 4.6,
+    isVegetarian: true,
+    isPopular: true
+  },
+  {
+    id: 17,
+    name: "Veg Hakka Noodles",
+    category: "chinese",
+    description: "Stir-fried noodles with mixed vegetables and soy sauce",
+    price: 260,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWjiGUvoTxQJYxl9FnhWEuD1pAT0PkrI_4ca2awGyu_w&s=10",
+    rating: 4.4,
+    isVegetarian: true,
+    isPopular: false
+  },
+
+  // ─── Snacks (3 items) ──────────────────────────────────────────────
+  {
+    id: 18,
+    name: "Samosa",
+    category: "snacks",
+    description: "Crispy pastry filled with spiced potato and green peas mixture",
+    price: 80,
+    image: "https://static.toiimg.com/thumb/61050397.cms?imgsize=246859&width=800&height=800",
+    rating: 4.4,
+    isVegetarian: true,
+    isPopular: true
+  },
+  {
+    id: 19,
+    name: "Vada Pav",
+    category: "snacks",
+    description: "Spicy potato fritter served in a bun with chutneys",
+    price: 90,
+    image: "https://www.cookwithmanali.com/wp-content/uploads/2018/04/Vada-Pav-500x375.jpg",
+    rating: 4.2,
+    isVegetarian: true,
+    isPopular: false
+  },
+  {
+    id: 20,
+    name: "Pani Puri",
+    category: "snacks",
+    description: "Crispy hollow puris filled with spicy and tangy water",
+    price: 120,
+    image: "https://www.sidechef.com/recipe/3883dffb-5fa2-4ee9-8054-d8de1409899f.jpg?d=1408x1120",
+    rating: 4.5,
+    isVegetarian: true,
+    isPopular: true
+  },
+
+  // ─── Desserts (3 items) ─────────────────────────────────────────────
+  {
+    id: 21,
     name: "Gulab Jamun",
     category: "desserts",
-    description: "Soft milk solids in rose-flavored sugar syrup",
+    description: "Soft and spongy milk solids in rose-flavored sugar syrup",
     price: 150,
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663778283739/SE7CbgfPW9YZFR8iB7rsUh/dish-gulab-jamun-mphcUX2r9ZqsCYAsEYJi48.webp",
     rating: 4.8,
     isVegetarian: true,
     isPopular: true
+  },
+  {
+    id: 22,
+    name: "Rasmalai",
+    category: "desserts",
+    description: "Soft cheese patties soaked in creamy cardamom-flavored milk",
+    price: 180,
+    image: "https://www.awesomecuisine.com/wp-content/uploads/2020/01/rasmalai-500x375.jpg",
+    rating: 4.7,
+    isVegetarian: true,
+    isPopular: true
+  },
+  {
+    id: 23,
+    name: "Kaju Katli",
+    category: "desserts",
+    description: "Rich diamond-shaped cashew fudge with edible silver leaf",
+    price: 200,
+    image: "https://www.cookwithkushi.com/wp-content/uploads/2021/05/kaju_katli_kaju_barfi_recipe-500x500.jpg",
+    rating: 4.6,
+    isVegetarian: true,
+    isPopular: false
+  },
+
+  // ─── Drinks (2 items) ──────────────────────────────────────────────
+  {
+    id: 24,
+    name: "Mango Lassi",
+    category: "drinks",
+    description: "Refreshing yogurt-based drink with sweet mango pulp",
+    price: 180,
+    image: "https://www.yellowthyme.com/wp-content/uploads/2023/03/Mango-Lassi-08589.jpg",
+    rating: 4.5,
+    isVegetarian: true,
+    isPopular: true
+  },
+  {
+    id: 25,
+    name: "Masala Chai",
+    category: "drinks",
+    description: "Traditional Indian tea with aromatic spices and ginger",
+    price: 80,
+    image: "https://www.loveandotherspices.com/wp-content/uploads/2025/01/masala-chai-tea-2.jpg",
+    rating: 4.4,
+    isVegetarian: true,
+    isPopular: false
   }
 ];
 
@@ -246,13 +471,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50/50 to-white">
       {/* Header */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? "bg-white/98 backdrop-blur-xl shadow-lg border-b border-amber-100/50"
-            : "bg-transparent"
-        }`}
-      >
+     <header
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+    isScrolled
+      ? "bg-white/98 backdrop-blur-xl shadow-lg border-b border-amber-100/50"
+      : "bg-white shadow-sm border-b border-amber-100/30"
+  }`}
+>
+      
         <div className="container flex items-center justify-between h-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
