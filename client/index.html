@@ -1,26 +1,47 @@
 <!doctype html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Murali Krishna Sweets - Premium Tradition</title>    
-    <!-- THIS IS THE START OF A COMMENT BLOCK, BLOCK TO BE DELETED: Google Fonts here, example:
+    <title>Murali Krishna Sweets - Premium Tradition</title>
+    
+    <!-- Google Fonts - Uncomment and use if needed -->
+    <!--
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    THIS IS THE END OF A COMMENT BLOCK, BLOCK TO BE DELETED -->
+    -->
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    
+    <!-- Meta tags for better SEO -->
+    <meta name="description" content="Murali Krishna Sweets - Premium vegetarian fine dining experience with authentic Indian cuisine" />
+    <meta name="keywords" content="restaurant, vegetarian, fine dining, Indian cuisine, sweets" />
+    <meta name="author" content="Murali Krishna" />
+    
+    <!-- Open Graph tags for social media sharing -->
+    <meta property="og:title" content="Murali Krishna Sweets - Premium Tradition" />
+    <meta property="og:description" content="Premium vegetarian fine dining experience with authentic Indian cuisine" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#b45309" />
   </head>
 
   <body>
     <div id="root"></div>
+    
+    <!-- Main entry point - this is critical for Vite to work -->
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Analytics (optional) - only loads if environment variables are set -->
     <script
       defer
       src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%">
+    </script>
   </body>
-
 </html>
